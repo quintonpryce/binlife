@@ -1,3 +1,4 @@
 #!/bin/bash
-sleep $1m
+
+sleep $((60*$1))
 say "Quinton. Your timer is finished."

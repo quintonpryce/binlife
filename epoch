@@ -1,2 +1,3 @@
 #!/bin/bash
+
 date -j -r $1
