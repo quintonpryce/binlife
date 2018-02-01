@@ -1,0 +1,22 @@
+
+#!/bin/sh
+
+cygwin=false
+darwin=false
+os400=false
+hpux=false
+case "`uname`" in
+CYGWIN*) cygwin=true;;
+Darwin*) darwin=true;;
+OS400*) os400=true;;
+HP-UX*) hpux=true;;
+esac
+
+# resolve links - $0 may be a softlink
+
+while ! ping -c 1 -W 1 8.8.8.8; do
+echo "ping 8.8.8.8...no response..."
+sleep 1
+done
+
+say "Quinton. The internet is back online. Have a great day."

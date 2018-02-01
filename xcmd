@@ -1,0 +1,47 @@
+#!/bin/sh
+# author    :   Quinton Pryce
+# date      :   25/01/2018
+# purpose   :   Provide useful commands for xcode
+
+# OPTIONS
+# -h, --help                show help
+# -i, --index               turn on or off indexing on xcode
+
+toggle_indexing () {
+	if [ $(defaults read com.apple.dt.XCode IDEIndexDisable) -eq 1 ]; then
+		defaults write com.apple.dt.XCode IDEIndexDisable 0
+		echo "Turned on xcode indexing."
+	else
+		defaults write com.apple.dt.XCode IDEIndexDisable 1
+		echo "Turned off xcode indexing."
+	fi
+}
+
+
+if [ $# -le 0 ]; then
+        echo "No input found. Use -h or --help for assistance."
+        exit 0
+fi
+
+while test $# -gt 0; do
+        case "$1" in
+                        -h|--help)
+                        echo "options:"
+                        echo "-h, --help                show help"
+                        echo "-i, --index               turn on or off indexing on xcode" 
+                        exit 0
+                        ;;
+                -i|--index)
+			toggle_indexing
+                        exit 0
+                        ;;
+                '')
+                        exit 0
+                        ;;
+                *)
+                        echo "Bad input found. Use -h or --help for assistance."
+                        exit 0
+			;;
+	esac
+done
+
