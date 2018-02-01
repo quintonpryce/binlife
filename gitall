@@ -3,3 +3,4 @@ git add -A
 MSG="$(echo "\"$@\"")"
 echo $MSG
 git commit -m "$MSG"
+git push
