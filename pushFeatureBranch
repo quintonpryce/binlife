@@ -1,0 +1,23 @@
+#!/bin/bash
+
+export PATH=$PATH:/usr/local/bin
+
+# Get branch name
+branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+branch_name="(unnamed branch)"     # detached HEAD
+branch_name=${branch_name##refs/heads/}
+
+echo $branch_name
+pwd
+
+# Push branch to remote
+git push --set-upstream origin ${branch_name}
+
+# Push up private branch
+private_branch_name="$(awk -F 'feature/' '{printf $1 $2}' <<< "$branch_name")"
+
+git branch q/${private_branch_name}
+
+git checkout q/${private_branch_name}
+
+git push --set-upstream origin q/${private_branch_name}
